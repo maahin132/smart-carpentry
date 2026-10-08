@@ -1,0 +1,121 @@
+:root {
+  --sc-admin-navy: #0f172a;
+  --sc-admin-navy-deep: #0a1020;
+  --sc-admin-stone: #d6d0c7;
+  --sc-admin-stone-light: #e7e2da;
+  --sc-admin-page: #f3f0eb;
+  --sc-admin-crimson: #b42332;
+  --sc-admin-crimson-dark: #8f1d29;
+  --sc-admin-text: #20242b;
+  --sc-admin-muted: #706c66;
+}
+
+body,
+#container,
+.main {
+  background: var(--sc-admin-page);
+  color: var(--sc-admin-text);
+}
+
+#header {
+  background: var(--sc-admin-navy);
+  color: #f5f2ec;
+}
+
+#branding h1,
+#branding h1 a:link,
+#branding h1 a:visited,
+#user-tools,
+#user-tools a {
+  color: #f5f2ec;
+}
+
+a:link,
+a:visited {
+  color: var(--sc-admin-navy);
+}
+
+a:hover,
+a:focus {
+  color: var(--sc-admin-crimson);
+}
+
+div.breadcrumbs {
+  background: var(--sc-admin-navy-deep);
+  color: #aaa59d;
+}
+
+div.breadcrumbs a {
+  color: #f5f2ec;
+}
+
+.module,
+.inline-group,
+.dashboard .module table {
+  background: var(--sc-admin-stone-light);
+}
+
+.module caption,
+.inline-group h2,
+.selector-chosen h2 {
+  background: var(--sc-admin-navy);
+  color: #f5f2ec;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.selector-chosen select:focus {
+  border-color: var(--sc-admin-crimson);
+  outline-color: var(--sc-admin-crimson);
+}
+
+input[type="submit"],
+button,
+.submit-row input,
+a.button,
+.button,
+input.default {
+  background: var(--sc-admin-crimson);
+  border-color: var(--sc-admin-crimson);
+  color: #f5f2ec;
+}
+
+input[type="submit"]:hover,
+button:hover,
+.submit-row input:hover,
+a.button:hover,
+.button:hover,
+input.default:hover {
+  background: var(--sc-admin-crimson-dark);
+  border-color: var(--sc-admin-crimson-dark);
+  color: #f5f2ec;
+}
+
+.object-tools a:link,
+.object-tools a:visited {
+  background: var(--sc-admin-crimson);
+}
+
+.object-tools a:hover {
+  background: var(--sc-admin-crimson-dark);
+}
+
+table thead th {
+  background: var(--sc-admin-stone);
+  color: var(--sc-admin-text);
+}
+
+tr:nth-child(odd),
+.row-form-errors {
+  background: var(--sc-admin-page);
+}
+
+.help,
+p.help,
+form p.help,
+div.help,
+form div.help,
+div.help li {
+  color: var(--sc-admin-muted);
+}

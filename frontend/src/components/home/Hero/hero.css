@@ -1,0 +1,12 @@
+.hero-workbench {
+  perspective: 1200px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-workbench *,
+  .hero-workbench *::before,
+  .hero-workbench *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,41 @@
+.materials-section {
+  scroll-margin-top: 76px;
+}
+
+.material-row {
+  position: relative;
+  transition:
+    background-color 220ms ease,
+    padding-left 220ms ease,
+    padding-right 220ms ease;
+}
+
+.material-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--sc-surface);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.material-row:hover::before {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .material-row {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .materials-section *,
+  .materials-section *::before,
+  .materials-section *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

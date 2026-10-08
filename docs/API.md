@@ -57,5 +57,25 @@ The frontend must never be treated as the authority for:
 
 Development:
 
-   text
+text
 http://127.0.0.1:8000/api/
+
+## Create a quotation from a saved estimate
+
+`POST /quotations/from-estimate/` requires an authenticated session and a CSRF token.
+
+Request:
+
+```json
+{
+  "estimate": 42,
+  "currency": "INR",
+  "subtotal": "12500.00",
+  "tax_amount": "2250.00"
+}
+```
+
+The estimate must belong to the authenticated user. The endpoint creates a project
+from the estimate's title and measurements, then creates a linked quotation. Both
+records are committed together; if quotation creation fails, the project creation
+is rolled back. The response uses the standard quotation representation.

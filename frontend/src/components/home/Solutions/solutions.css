@@ -1,0 +1,12 @@
+.solutions-section {
+  scroll-margin-top: 76px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solutions-section *,
+  .solutions-section *::before,
+  .solutions-section *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

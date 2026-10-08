@@ -1,0 +1,755 @@
+.furniture-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  padding: 120px 0 140px;
+
+  --sc-accent: var(--sc-crimson);
+
+  background: var(--sc-bg);
+}
+
+.dark .furniture-section {
+  --sc-accent: var(--sc-crimson-soft);
+}
+
+.furniture-section--compact {
+  padding: 88px 0 96px;
+}
+
+.furniture-section--compact .furniture-heading-block {
+  grid-template-columns: 1fr 0.8fr;
+  gap: 48px;
+  padding-bottom: 36px;
+}
+
+.furniture-section--compact .furniture-eyebrow {
+  margin-bottom: 14px;
+}
+
+.furniture-section--compact .furniture-heading {
+  font-size: clamp(2.6rem, 4.2vw, 4.5rem);
+}
+
+.furniture-section--compact .furniture-heading-copy p {
+  font-size: 16px;
+}
+
+.furniture-section--compact .furniture-heading-line {
+  margin-top: 18px;
+}
+
+.furniture-section--compact .furniture-flow-caption {
+  margin-top: 24px;
+}
+
+.furniture-section--compact .furniture-flow {
+  width: min(100% - 48px, 1360px);
+  margin: 20px auto 0;
+  overflow: visible;
+  padding: 0;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.furniture-section--compact .furniture-track {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+  gap: 22px;
+  animation: none;
+  transform: none;
+  will-change: auto;
+}
+
+.furniture-section--compact .furniture-card {
+  width: auto;
+  margin: 0;
+}
+
+.furniture-section--compact .furniture-card-image-wrap {
+  height: clamp(230px, 24vw, 330px);
+}
+
+.furniture-section--compact .furniture-flowline {
+  display: none;
+}
+
+/* =========================================
+   HEADING
+========================================= */
+
+.furniture-heading-block {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 80px;
+
+  align-items: end;
+
+  padding-bottom: 58px;
+
+  border-bottom: 1px solid var(--sc-border);
+}
+
+.furniture-eyebrow {
+  margin: 0 0 20px;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+
+  color: var(--sc-accent);
+}
+
+.furniture-heading {
+  margin: 0;
+
+  font-size: clamp(3rem, 6vw, 6rem);
+
+  font-weight: 500;
+  line-height: 0.92;
+
+  letter-spacing: -0.055em;
+
+  color: var(--sc-text);
+}
+
+.furniture-heading span {
+  color: var(--sc-accent);
+}
+
+.furniture-heading-copy {
+  max-width: 600px;
+
+  justify-self: end;
+}
+
+.furniture-heading-copy p {
+  margin: 0;
+
+  font-size: 18px;
+  line-height: 1.75;
+
+  color: var(--sc-muted);
+}
+
+.furniture-heading-line {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-top: 30px;
+
+  font-size: 12px;
+
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  color: var(--sc-muted);
+}
+
+.furniture-heading-line span {
+  width: 42px;
+  height: 1px;
+
+  background: var(--sc-accent);
+}
+
+/* =========================================
+   FLOW CAPTION
+========================================= */
+
+.furniture-flow-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-top: 36px;
+
+  font-size: 12px;
+
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  color: var(--sc-muted);
+}
+
+.furniture-flow-caption span:last-child {
+  opacity: 0.65;
+}
+
+/* =========================================
+   FULL-WIDTH EDITORIAL FLOW
+   Edge to edge — no gallery box. Cards
+   travel through the viewport and soften
+   at the page edges.
+========================================= */
+
+.furniture-flow {
+  position: relative;
+
+  max-width: 100%;
+  margin-top: 24px;
+
+  overflow: hidden;
+
+  padding: 64px 0 82px;
+
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0,
+    #000 72px,
+    #000 calc(100% - 72px),
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0,
+    #000 72px,
+    #000 calc(100% - 72px),
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* =========================================
+   MOVING TRACK
+   The collection is rendered twice and
+   every card carries the gap as a trailing
+   margin, so -50% is exactly one copy and
+   the loop can never jump.
+========================================= */
+
+.furniture-track {
+  display: flex;
+  align-items: flex-start;
+
+  width: max-content;
+
+  animation: furniture-scroll 58s linear infinite;
+
+  will-change: transform;
+}
+
+.furniture-flow.is-paused .furniture-track {
+  animation-play-state: paused;
+}
+
+.furniture-flow:hover .furniture-track,
+.furniture-flow:focus-within .furniture-track {
+  animation-play-state: paused;
+}
+
+@keyframes furniture-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* =========================================
+   CARDS
+   Controlled vertical rhythm —
+   lower / normal / higher, repeating.
+========================================= */
+
+.furniture-card {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: 330px;
+
+  margin-right: 34px;
+}
+
+.furniture-card-0 {
+  margin-top: 34px;
+}
+
+.furniture-card-1 {
+  margin-top: 0;
+}
+
+.furniture-card-2 {
+  margin-top: -22px;
+}
+
+.furniture-card-3 {
+  margin-top: 34px;
+}
+
+.furniture-card-4 {
+  margin-top: 0;
+}
+
+.furniture-card-5 {
+  margin-top: -22px;
+}
+
+.furniture-card-frame {
+  position: relative;
+
+  padding: 8px;
+
+  border: 1px solid var(--sc-border);
+  background: var(--sc-surface);
+  box-shadow: 0 12px 28px rgb(15 23 42 / 8%);
+
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.furniture-card:hover .furniture-card-frame {
+  transform: translateY(-6px);
+
+  border-color: var(--sc-accent);
+
+  box-shadow: 0 16px 34px rgb(15 23 42 / 12%);
+}
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.furniture-card-image-wrap {
+  position: relative;
+
+  height: 390px;
+
+  overflow: hidden;
+
+  background: var(--sc-surface-soft);
+}
+
+.furniture-card-image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.furniture-card:hover .furniture-card-image {
+  transform: scale(1.045);
+}
+
+.furniture-card-image-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.02),
+      transparent 55%,
+      rgba(0, 0, 0, 0.34)
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================
+   CARD META
+========================================= */
+
+.furniture-card-number {
+  position: absolute;
+
+  top: 18px;
+  left: 18px;
+
+  z-index: 2;
+
+  font-size: 12px;
+
+  letter-spacing: 0.18em;
+
+  border: 1px solid var(--sc-crimson);
+  border-radius: 3px;
+  padding: 6px 8px;
+  background: var(--sc-surface);
+  color: var(--sc-accent);
+}
+
+.furniture-card-arrow {
+  position: absolute;
+
+  top: 16px;
+  right: 16px;
+
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  border: 1px solid rgba(255, 255, 255, 0.55);
+
+  font-size: 14px;
+
+  color: var(--sc-text-light);
+
+  opacity: 0;
+
+  transform: translateY(-5px);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.furniture-card:hover .furniture-card-arrow {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.furniture-card-arrow:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 3px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.furniture-card-arrow:focus-visible,
+.furniture-card-arrow:hover {
+  color: var(--sc-text-light);
+}
+
+/* =========================================
+   CARD INFO
+========================================= */
+
+.furniture-card-info {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  min-height: 108px;
+
+  padding: 20px 16px 16px;
+}
+
+.furniture-card-category {
+  margin: 0 0 7px;
+
+  font-size: 12px;
+
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: var(--sc-muted);
+}
+
+.furniture-card-info h3 {
+  margin: 0;
+
+  font-size: 20px;
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: -0.03em;
+
+  color: var(--sc-text);
+
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s ease;
+}
+
+.furniture-card:hover .furniture-card-info h3 {
+  transform: translateX(5px);
+
+  color: var(--sc-accent);
+}
+
+.furniture-card-planning {
+  flex-shrink: 0;
+
+  margin: 0;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  text-align: right;
+
+  color: var(--sc-muted);
+}
+
+/* =========================================
+   FLOW LINE
+========================================= */
+
+.furniture-flowline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px 18px;
+
+  margin-top: 60px;
+  padding-top: 28px;
+
+  border-top: 1px solid var(--sc-border);
+
+  font-size: 12px;
+
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  color: var(--sc-muted);
+}
+
+.furniture-flowline span:not(:last-child)::after {
+  content: '—';
+
+  margin-left: 18px;
+
+  color: var(--sc-accent);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1439px) {
+  .furniture-card {
+    width: 300px;
+
+    margin-right: 30px;
+  }
+
+  .furniture-track {
+    animation-duration: 54s;
+  }
+}
+
+@media (max-width: 1023px) {
+  .furniture-section--compact .furniture-heading-block {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .furniture-section--compact .furniture-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .furniture-section--compact .furniture-card-image-wrap {
+    height: 300px;
+  }
+
+  .furniture-heading-block {
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+  }
+
+  .furniture-heading-copy {
+    justify-self: start;
+  }
+
+  .furniture-card {
+    width: min(44vw, 300px);
+
+    margin-right: 26px;
+  }
+
+  .furniture-card-0,
+  .furniture-card-3 {
+    margin-top: 28px;
+  }
+
+  .furniture-card-2,
+  .furniture-card-5 {
+    margin-top: -18px;
+  }
+
+  .furniture-card-image-wrap {
+    height: 350px;
+  }
+
+  .furniture-track {
+    animation-duration: 50s;
+  }
+}
+
+@media (max-width: 640px) {
+  .furniture-section--compact {
+    padding: 68px 0 76px;
+  }
+
+  @media (hover: hover) {
+    .furniture-section--compact .furniture-card {
+      transition: transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .furniture-section--compact .furniture-card:hover {
+      transform: translateY(-5px);
+    }
+  }
+
+  .furniture-section--compact .furniture-flow {
+    width: min(100% - 40px, 1360px);
+  }
+
+  .furniture-section--compact .furniture-track {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .furniture-section--compact .furniture-card-image-wrap {
+    height: min(82vw, 360px);
+  }
+
+  .furniture-section {
+    padding: 80px 0 90px;
+  }
+
+  .furniture-heading {
+    font-size: 3rem;
+  }
+
+  .furniture-heading-block {
+    padding-bottom: 40px;
+  }
+
+  .furniture-flow-caption {
+    margin-top: 28px;
+  }
+
+  .furniture-flow {
+    margin-top: 18px;
+
+    padding: 46px 0 58px;
+
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0) 0,
+      #000 44px,
+      #000 calc(100% - 44px),
+      rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0) 0,
+      #000 44px,
+      #000 calc(100% - 44px),
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  .furniture-track {
+    animation-duration: 46s;
+  }
+
+  .furniture-card {
+    width: min(76vw, 330px);
+
+    margin-right: 18px;
+  }
+
+  .furniture-card-0,
+  .furniture-card-3 {
+    margin-top: 26px;
+  }
+
+  .furniture-card-2,
+  .furniture-card-5 {
+    margin-top: -16px;
+  }
+
+  .furniture-card-image-wrap {
+    height: 310px;
+  }
+
+  .furniture-card-info {
+    min-height: 92px;
+
+    padding: 15px 12px 12px;
+  }
+
+  .furniture-card-info h3 {
+    font-size: 18px;
+  }
+
+  .furniture-flowline {
+    justify-content: center;
+
+    gap: 12px 16px;
+
+    margin-top: 44px;
+  }
+
+  .furniture-flowline span:not(:last-child)::after {
+    margin-left: 16px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+   Automatic movement stops completely and
+   the collection rests as a static wrapped
+   grid — no content is ever hidden.
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .furniture-track {
+    width: 100%;
+
+    flex-wrap: wrap;
+    justify-content: center;
+
+    row-gap: 48px;
+
+    animation: none;
+
+    transform: none;
+    will-change: auto;
+  }
+
+  .furniture-card[data-clone='true'] {
+    display: none;
+  }
+
+  .furniture-flow {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .furniture-card-frame,
+  .furniture-card-image,
+  .furniture-card-arrow,
+  .furniture-card-info h3 {
+    transition: none;
+  }
+
+  .furniture-card:hover .furniture-card-frame,
+  .furniture-card:hover .furniture-card-image,
+  .furniture-card:hover .furniture-card-info h3 {
+    transform: none;
+  }
+}
